@@ -1,0 +1,18 @@
+$margin-10: 10px;
+$margin-5: 5px;
+
+.main-chapters {
+  margin-top: $margin-10;
+}
+
+.status-text {
+  float: right;
+}
+
+.sub-chapters-container {
+  padding: 15px;
+
+  .sub-chapters {
+    margin-top: $margin-5;
+  }
+}
