@@ -1,6 +1,6 @@
 var express = require('express');
 
-//files to server API 
+//files to server API
 var root = require('./api/root.json');
 var child = require('./api/child.json');
 
@@ -8,6 +8,12 @@ var app = express();
 var port = 3000;
 
 app.use(express.static('public'))
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/book/:bookId', function(req, res) {
   res.sendFile(__dirname + '/public/book/index.html');
@@ -25,7 +31,7 @@ app.get('/api/book/:bookId', function(req,res){
   if(item) {
     response.response = item;
     return res.json(response);
-  } 
+  }
   response.status = 'NOT-FOUND';
   response.statusCode = 404;
   response.response = {
@@ -48,7 +54,7 @@ app.get('/api/book/:bookId/section/:sectionId', function(req,res){
         res.json(response);
       }, (Math.random() * 500 + 500))
     }
-  } 
+  }
   response.status = 'NOT-FOUND';
   response.statusCode = 404;
   response.response = {
