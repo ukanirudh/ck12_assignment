@@ -10,6 +10,11 @@ To start with the assignment, make sure you have the latest version of node.js. 
 
 The server would be by default running on http://localhost:3000. If you wish to change the port, you can do that in line 8 of ```index.js``` in root folder. All the files that you are required to edit is present in the ```public``` folder. Please do not make any changes to ```api``` folder as it is responsible for serving the API requests.
 
+# To Run UI Paralelly
+  ```sh
+  $ npm run ui
+  ```
+
 # API Documentation
 
 There are two types of APIs here. One is to get the first level book details and the other to get the second level details
