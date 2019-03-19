@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import {renderSubsection, renderSubChapters} from './chapterUtility'
+import {renderSubsection, renderSubChapters, unMountUiAtId} from './chapterUtility'
 
 class App extends Component {
   componentWillMount () {
@@ -16,21 +16,21 @@ class App extends Component {
 
   openSubsection = (e, id) => {
     const oldid = this.state.activeBookId
-    document.getElementById(`${oldid}`) && ReactDOM.unmountComponentAtNode(document.getElementById(`${oldid}`))
+    document.getElementById(`${oldid}`) && unMountUiAtId(oldid)
     renderSubsection(id)
     this.setState({activeBookId: id})
   }
 
   displayMainChapters = (books, activeBookId) => {
     return books.map((book, index) => {
-      const {title, id} = book
+      const {title, id, childrenCount} = book
       return (
         <React.Fragment key={id}>
           <a
             href="#"
             onClick={(e) => this.openSubsection(e, id)}
-            className="list-group-item list-group-item-action list-group-item-primary main-chapters" >
-            {`Chapter ${index+1} - ${title}`}
+            className="list-group-item list-group-item-action list-group-item-secondary main-chapters" >
+            {`Chapter ${index+1} - ${title} (${childrenCount} Concepts)`}
           </a>
           <div id={id}></div>
         </React.Fragment>

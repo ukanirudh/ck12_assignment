@@ -1,5 +1,8 @@
 $margin-10: 10px;
 $margin-5: 5px;
+$width-5: 5em;
+$height-5: 5em;
+$padding-15: 15px;
 
 .main-chapters {
   margin-top: $margin-10;
@@ -14,5 +17,14 @@ $margin-5: 5px;
 
   .sub-chapters {
     margin-top: $margin-5;
+  }
+}
+
+.loading-container {
+  padding: $padding-15;
+
+  .loading-icon {
+    width: $width-5;
+    height:$height-5;
   }
 }
