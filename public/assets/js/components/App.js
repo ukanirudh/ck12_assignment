@@ -14,11 +14,16 @@ class App extends Component {
     .catch(error => console.log(error))
   }
 
-  openSubsection = (e, id) => {
+  openSubsection = (e, selectedid) => {
     const oldid = this.state.activeBookId
     document.getElementById(`${oldid}`) && unMountUiAtId(oldid)
-    renderSubsection(id)
-    this.setState({activeBookId: id})
+
+    if (selectedid === oldid && document.getElementById(`${oldid}`).getAttribute('data-activebook')) {
+      this.setState({activeBookId: ''})
+    } else {
+      renderSubsection(selectedid)
+      this.setState({activeBookId: selectedid})
+    }
   }
 
   displayMainChapters = (books, activeBookId) => {
@@ -32,7 +37,7 @@ class App extends Component {
             className="list-group-item list-group-item-action list-group-item-secondary main-chapters" >
             {`Chapter ${index+1} - ${title} (${childrenCount} Concepts)`}
           </a>
-          <div id={id}></div>
+          <div id={id} data-activebook={activeBookId === id}></div>
         </React.Fragment>
       )
     })
